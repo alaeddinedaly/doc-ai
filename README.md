@@ -20,6 +20,26 @@ docker compose up --build
 
 Access backend docs at `http://localhost:8000/docs` and frontend at `http://localhost:5173`.
 
+### Environment variables
+
+After copying `backend/.env.example` to `backend/.env`, edit it with your own credentials before launching. The file includes:
+
+```
+APP_NAME=DOC-IA
+ENVIRONMENT=local
+DEBUG=true
+DATABASE_URL=postgresql+asyncpg://<user>:<password>@<host>:5432/<database>
+REDIS_URL=redis://redis:6379/0
+CELERY_BROKER_URL=redis://redis:6379/1
+CELERY_BACKEND_URL=redis://redis:6379/2
+GEMINI_API_KEY=<your_google_generative_ai_key>
+GEMINI_MODEL=gemini-pro
+ALLOWED_ORIGINS=["http://localhost:5173"]
+MAX_UPLOAD_SIZE_MB=50
+```
+
+Keep `backend/.env` out of version control (it’s ignored via `.gitignore`) and only commit safe defaults to `backend/.env.example`.
+
 ## Architecture
 
 ```
